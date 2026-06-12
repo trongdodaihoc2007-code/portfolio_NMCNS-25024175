@@ -12,24 +12,24 @@
     rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════
-       DESIGN SYSTEM — Warm Neutral + Sage Green Accent
+       DESIGN SYSTEM — Clean Tech + Emerald/Indigo Accent
        ═══════════════════════════════════════════════════ */
     :root {
-      --bg: #fafaf8;
-      --bg-alt: #f4f3ef;
+      --bg: #f8fafc;
+      --bg-alt: #f1f5f9;
       --bg-card: #ffffff;
-      --bg-dark: #1a1a18;
-      --bg-dark-card: #242422;
-      --border: #d4d0c8;
-      --border-light: #e8e5dd;
-      --text: #2c2c2a;
-      --text-light: #6b6960;
-      --text-muted: #9c968c;
-      --accent: #5a7a64;
-      --accent-light: #e8f0ea;
-      --accent-dark: #3d5643;
-      --accent-warm: #b8956a;
-      --accent-warm-light: #f5ede3;
+      --bg-dark: #0f172a;
+      --bg-dark-card: #1e293b;
+      --border: #cbd5e1;
+      --border-light: #e2e8f0;
+      --text: #0f172a;
+      --text-light: #475569;
+      --text-muted: #94a3b8;
+      --accent: #059669;
+      --accent-light: rgba(5, 150, 105, 0.12);
+      --accent-dark: #047857;
+      --accent-warm: #4f46e5;
+      --accent-warm-light: rgba(79, 70, 229, 0.12);
       --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
       --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
@@ -45,30 +45,129 @@
       --nav-bg: rgba(250, 250, 248, 0.85);
     }
 
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(var(--border-light) 1.5px, transparent 1.5px);
+      background-size: 32px 32px;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
     /* ═══════════════════════════════════════════════════
-       DARK MODE VARIABLES
+       BACKGROUND DECORATIONS (BLOBS)
+       ═══════════════════════════════════════════════════ */
+    .decor-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: -1;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: float-blob 20s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      top: 5%;
+      left: -10%;
+      width: 40vw;
+      height: 40vw;
+      background: var(--accent-light);
+    }
+
+    .blob-2 {
+      top: 60%;
+      right: -10%;
+      width: 35vw;
+      height: 35vw;
+      background: var(--accent-warm-light);
+      animation-delay: -5s;
+    }
+
+    .blob-3 {
+      bottom: -15%;
+      left: 20%;
+      width: 50vw;
+      height: 50vw;
+      background: rgba(122, 174, 136, 0.08);
+      animation-delay: -10s;
+    }
+
+    @keyframes float-blob {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(50px, -50px) scale(1.05);
+      }
+
+      100% {
+        transform: translate(-30px, 50px) scale(0.95);
+      }
+    }
+
+    [data-theme="dark"] body {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1.5px, transparent 1.5px);
+    }
+
+    [data-theme="dark"] .blob-1 {
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    [data-theme="dark"] .blob-2 {
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    [data-theme="dark"] .blob-3 {
+      background: rgba(56, 189, 248, 0.06);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       DARK MODE VARIABLES & SPOTLIGHT EFFECT
        ═══════════════════════════════════════════════════ */
     [data-theme="dark"] {
-      --bg: #131315;
-      --bg-alt: #1a1a1e;
-      --bg-card: #1e1e22;
-      --bg-dark: #0a0a0c;
-      --bg-dark-card: #141416;
-      --border: #2e2e34;
-      --border-light: #252529;
-      --text: #e8e6e3;
-      --text-light: #a09c95;
-      --text-muted: #6b6860;
-      --accent: #7aae88;
-      --accent-light: rgba(122, 174, 136, 0.12);
-      --accent-dark: #a5d4b0;
-      --accent-warm: #d4a96a;
-      --accent-warm-light: rgba(212, 169, 106, 0.1);
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
-      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
-      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
-      --nav-bg: rgba(19, 19, 21, 0.88);
+      --bg: #0a0f18;
+      --bg-alt: #101725;
+      --bg-card: #141c2b;
+      --bg-dark: #05080f;
+      --bg-dark-card: #0d131f;
+      --border: #1e293b;
+      --border-light: #233044;
+      --text: #f1f5f9;
+      --text-light: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #10b981;
+      --accent-light: rgba(16, 185, 129, 0.15);
+      --accent-dark: #34d399;
+      --accent-warm: #6366f1;
+      --accent-warm-light: rgba(99, 102, 241, 0.15);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
+      --nav-bg: rgba(10, 15, 24, 0.88);
+    }
+
+    /* GLOBAL MOUSE VARIABLES (Updated via JS) */
+    body {
+      --mouse-x: 50vw;
+      --mouse-y: 50vh;
+    }
+
+    /* SPOTLIGHT EFFECT */
+    [data-theme="dark"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle 600px at var(--mouse-x) var(--mouse-y), rgba(16, 185, 129, 0.08) 0%, transparent 80%);
+      pointer-events: none;
+      z-index: 9998;
+      transition: background 0.2s ease;
     }
 
     [data-theme="dark"] .tag-system {
@@ -371,6 +470,36 @@
       transform: rotate(15deg) scale(0.95);
     }
 
+    /* ═══════════════════════════════════════════════════
+       NAV AVATAR
+       ═══════════════════════════════════════════════════ */
+    .nav-avatar-container {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border-light);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: var(--transition);
+      background: var(--bg-alt);
+      position: relative;
+    }
+
+    .nav-avatar-container:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
     .theme-toggle .icon-sun,
     .theme-toggle .icon-moon {
       position: absolute;
@@ -604,11 +733,53 @@
     }
 
     .hero-inner {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       width: 100%;
       position: relative;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .hero-image {
+      flex-shrink: 0;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s 0.3s forwards;
+    }
+
+    .hero-avatar-wrapper {
+      position: relative;
+      width: clamp(300px, 35vw, 500px);
+      height: clamp(300px, 35vw, 500px);
+      border-radius: 50%;
+      padding: 10px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .hero-avatar-crop {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid var(--bg-card);
+      background: var(--bg-card);
+      position: relative;
+    }
+
+    .hero-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     .hero-badge {
@@ -851,22 +1022,50 @@
        ═══════════════════════════════════════════════════ */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
     }
 
     .about-card {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card:nth-child(1) {
+      grid-column: span 7;
+    }
+
+    .about-card:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .about-card:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .about-card:nth-child(4) {
+      grid-column: span 7;
+    }
+
+    @media (max-width: 768px) {
+      .about-card:nth-child(n) {
+        grid-column: span 12;
+      }
     }
 
     .about-card:hover {
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
+      border-color: var(--accent);
     }
 
     .about-card-title {
@@ -956,8 +1155,21 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      position: relative;
       cursor: pointer;
+    }
+
+    .project-card .glare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 10;
+      transition: background 0.2s ease;
+      mix-blend-mode: overlay;
     }
 
     .project-card:hover {
@@ -1294,17 +1506,66 @@
        ═══════════════════════════════════════════════════ */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(12, 1fr);
       gap: 1.5rem;
     }
 
     .skill-category {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.8rem;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-category:nth-child(1) {
+      grid-column: span 7;
+    }
+
+    .skill-category:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .skill-category:nth-child(3) {
+      grid-column: span 4;
+    }
+
+    .skill-category:nth-child(4) {
+      grid-column: span 4;
+    }
+
+    .skill-category:nth-child(5) {
+      grid-column: span 4;
+    }
+
+    .skill-category:nth-child(6) {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .skill-category:nth-child(6) {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .skill-category:nth-child(n) {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .skill-category:nth-child(n) {
+        grid-column: span 12;
+      }
     }
 
     .skill-category:hover {
@@ -1656,6 +1917,29 @@
         padding: 6rem 1.2rem 3rem;
       }
 
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .hero-desc {
+        margin: 0 auto 2.5rem;
+      }
+
+      .hero-badge {
+        margin: 0 auto 1.5rem;
+      }
+
+      .hero-image {
+        order: -1;
+        /* Move avatar above text on mobile */
+      }
+
       .about-grid {
         grid-template-columns: 1fr;
       }
@@ -1711,6 +1995,11 @@
 </head>
 
 <body>
+  <!-- BACKGROUND DECORATIONS -->
+  <div class="decor-blob blob-1"></div>
+  <div class="decor-blob blob-2"></div>
+  <div class="decor-blob blob-3"></div>
+
   <!-- Page Transition Overlay -->
   <div class="page-transition-overlay" id="pageTransition"></div>
 
@@ -1723,17 +2012,8 @@
       <span class="dot"></span>
       Hala Madrid
     </a>
-    <div style="display:flex;align-items:center;gap:0.3rem;">
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <button class="theme-toggle" id="themeToggle" aria-label="Chuyển giao diện sáng/tối">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-      </button>
-    </div>
+
+    <!-- Center: Links -->
     <ul class="nav-links" id="navLinks">
       <li><a href="#about" class="active">Giới thiệu</a></li>
       <li class="nav-dropdown-wrapper" id="dropdownWrapper">
@@ -1798,6 +2078,22 @@
       <li><a href="#skills">Kỹ năng</a></li>
       <li><a href="#summary">Tổng kết</a></li>
     </ul>
+
+    <!-- Right: Actions & Avatar -->
+    <div class="nav-actions" style="display:flex;align-items:center;gap:0.8rem;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Chuyển giao diện sáng/tối">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+      <div class="nav-avatar-container" title="Trang cá nhân">
+        <img src="1000004944.jpg" alt="Nguyễn Văn Trọng" class="nav-avatar">
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- Hero Section -->
@@ -1806,32 +2102,42 @@
     <div class="hero-gradient"></div>
     <div class="hero-gradient-2"></div>
     <div class="hero-inner">
-      <div class="hero-badge">Portfolio Kỹ thuật số 2026</div>
-      <h1 class="hero-name">
-        Xin chào, mình là<br>
-        <span class="highlight">Nguyễn Văn Trọng</span>
-      </h1>
-      <p class="hero-desc">
-        Sinh viên ngành Khoa học dữ liệu tại UET-VNU, đam mê khám phá thế giới số.
-        Đây là nơi mình tổng hợp hành trình học tập qua môn <strong>Nhập môn Công nghệ số và Ứng dụng Trí tuệ Nhân
-          tạo</strong>.
-      </p>
-      <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-label">MSV</div>
-          <div class="stat-value">25024175</div>
+      <div class="hero-text">
+        <div class="hero-badge">Portfolio Kỹ thuật số 2026</div>
+        <h1 class="hero-name">
+          Xin chào, mình là<br>
+          <span class="highlight">Nguyễn Văn Trọng</span>
+        </h1>
+        <p class="hero-desc">
+          Sinh viên ngành Khoa học dữ liệu tại UET-VNU, đam mê khám phá thế giới số.
+          Đây là nơi mình tổng hợp hành trình học tập qua môn <strong>Nhập môn Công nghệ số và Ứng dụng Trí tuệ Nhân
+            tạo</strong>.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-label">MSV</div>
+            <div class="stat-value">25024175</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Lớp</div>
+            <div class="stat-value">K70A-DS2</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Bài tập</div>
+            <div class="stat-value">6</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Năm</div>
+            <div class="stat-value">2025–2026</div>
+          </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Lớp</div>
-          <div class="stat-value">K70A-DS2</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Bài tập</div>
-          <div class="stat-value">6</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Năm</div>
-          <div class="stat-value">2025–2026</div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-avatar-wrapper">
+          <div class="hero-avatar-crop">
+            <img src="1000004944.jpg" alt="Nguyễn Văn Trọng" class="hero-avatar">
+          </div>
+          <div class="hero-avatar-ring"></div>
         </div>
       </div>
     </div>
@@ -2005,7 +2311,7 @@
                       <a class="pdf-viewer-btn" href="tuan-1.pdf" download>⬇ Tải xuống</a>
                     </div>
                   </div>
-                  <iframe class="pdf-viewer-frame" src="tuan-1.pdf" title="Báo cáo Bài tập 1"></iframe>
+                  <iframe class="pdf-viewer-frame" src="tuan-1.pdf#view=FitH" title="Báo cáo Bài tập 1"></iframe>
                 </div>
               </div>
             </div>
@@ -2136,7 +2442,7 @@
                       <a class="pdf-viewer-btn" href="tuan-2.pdf" download>⬇ Tải xuống</a>
                     </div>
                   </div>
-                  <iframe class="pdf-viewer-frame" src="tuan-2.pdf" title="Báo cáo Bài tập 2"></iframe>
+                  <iframe class="pdf-viewer-frame" src="tuan-2.pdf#view=FitH" title="Báo cáo Bài tập 2"></iframe>
                 </div>
               </div>
             </div>
@@ -2271,7 +2577,7 @@
                       <a class="pdf-viewer-btn" href="tuan-3.pdf" download>⬇ Tải xuống</a>
                     </div>
                   </div>
-                  <iframe class="pdf-viewer-frame" src="tuan-3.pdf" title="Báo cáo Bài tập 3"></iframe>
+                  <iframe class="pdf-viewer-frame" src="tuan-3.pdf#view=FitH" title="Báo cáo Bài tập 3"></iframe>
                 </div>
               </div>
             </div>
@@ -2375,7 +2681,7 @@
                       <a class="pdf-viewer-btn" href="tuan-4.pdf" download>⬇ Tải xuống</a>
                     </div>
                   </div>
-                  <iframe class="pdf-viewer-frame" src="tuan-4.pdf" title="Báo cáo Bài tập 4"></iframe>
+                  <iframe class="pdf-viewer-frame" src="tuan-4.pdf#view=FitH" title="Báo cáo Bài tập 4"></iframe>
                 </div>
               </div>
             </div>
@@ -2482,7 +2788,7 @@
                       <a class="pdf-viewer-btn" href="tuan-5.pdf" download>⬇ Tải xuống</a>
                     </div>
                   </div>
-                  <iframe class="pdf-viewer-frame" src="tuan-5.pdf" title="Báo cáo Bài tập 5"></iframe>
+                  <iframe class="pdf-viewer-frame" src="tuan-5.pdf#view=FitH" title="Báo cáo Bài tập 5"></iframe>
                 </div>
               </div>
             </div>
@@ -2611,7 +2917,7 @@
                       <a class="pdf-viewer-btn" href="tuan-6.pdf" download>⬇ Tải xuống</a>
                     </div>
                   </div>
-                  <iframe class="pdf-viewer-frame" src="tuan-6.pdf" title="Báo cáo Bài tập 6"></iframe>
+                  <iframe class="pdf-viewer-frame" src="tuan-6.pdf#view=FitH" title="Báo cáo Bài tập 6"></iframe>
                 </div>
               </div>
             </div>
@@ -3149,6 +3455,17 @@
     function toggleProject(id) {
       const item = document.getElementById(id);
       item.classList.toggle('expanded');
+
+      // Fix blur issue: Immediately reset 3D transform when expanded
+      if (item.classList.contains('expanded')) {
+        const card = item.querySelector('.project-card');
+        if (card) {
+          card.style.transform = '';
+          card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+          const glare = card.querySelector('.glare');
+          if (glare) glare.style.background = 'transparent';
+        }
+      }
     }
 
     // =============================================
@@ -3198,6 +3515,84 @@
       card.style.animationDelay = `${0.55 + i * 0.1}s`;
     });
 
+
+    // =============================================
+    // Spotlight Effect (Glassmorphism 2.0)
+    // =============================================
+    document.addEventListener('mousemove', e => {
+      document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+
+    // =============================================
+    // 3D Tilt Effect on Project Cards
+    // =============================================
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        // Disable tilt when expanded to improve readability
+        const parentItem = card.closest('.project-item');
+        if (parentItem && parentItem.classList.contains('expanded')) {
+          card.style.transform = '';
+          const glare = card.querySelector('.glare');
+          if (glare) glare.style.background = 'transparent';
+          return;
+        }
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Tilt bounds max 4 degrees
+        const rotateX = ((y - centerY) / centerY) * -4;
+        const rotateY = ((x - centerX) / centerX) * 4;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.transition = 'none';
+
+        // Dynamic Glare
+        let glare = card.querySelector('.glare');
+        if (!glare) {
+          glare = document.createElement('div');
+          glare.className = 'glare';
+          card.appendChild(glare);
+        }
+        const percentX = (x / rect.width) * 100;
+        const percentY = (y / rect.height) * 100;
+        glare.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, rgba(255,255,255,0.15) 0%, transparent 60%)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+        const glare = card.querySelector('.glare');
+        if (glare) {
+          glare.style.background = 'transparent';
+        }
+      });
+    });
+
+    // =============================================
+    // Magnetic Buttons (Nav links & theme toggle)
+    // =============================================
+    const magnetics = document.querySelectorAll('.nav-links a, .theme-toggle, .nav-avatar-container');
+    magnetics.forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        // Move element slightly towards cursor (30% intensity)
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        btn.style.transition = 'none';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      });
+    });
 
   </script>
 </body>
